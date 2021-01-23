@@ -14,6 +14,11 @@ router.get('/reviews/:rating', async function (req, res) {
     res.send(result);
 }); 
 
+router.get('/reviews/', async function (req, res) {
+  result = await DemoReviews.find();
+  res.send(result);
+}); 
+
 router.post('/reviews/:text/:rating', function (req, res) {
     let text = req.params.text;
     let rating = req.params.rating;

@@ -18,8 +18,8 @@ class App extends Component {
         <p>visible on all pages</p>
         <BrowserRouter>
           <Route path={["/", "/review", "/map"]} exact component={NavBar}/>
-          <Route path="/review" exact component={Map} />
-          <Route path="/map" exact component={Review} />
+          <Route path="/review" exact component={Review} />
+          <Route path="/map" exact component={Map} />
         </BrowserRouter>
       </div>
     );
