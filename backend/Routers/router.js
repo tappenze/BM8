@@ -1,28 +1,32 @@
 var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
+const path = require('path');
+const ReviewSchema = require('../Models/Review');
 
-const reviewsDB = mongoose.connection.useDb('Reviews');
+const ReviewService = require(path.resolve(
+  __dirname,
+  '../Services/ReviewService.js'
+));
 
-const DemoReviewSchema = require('../Models/DemoReview.js');
-const DemoReviews = reviewsDB.model('DemoReview', DemoReviewSchema);
 
+router.get('/reviews/all', async function (req, res) {
+  result = await ReviewService.getAllReviews();
+  res.send(result);
+});
 
 router.get('/reviews/:rating', async function (req, res) {
-    let rating = req.params.rating;
-    result = await DemoReviews.find({ Rating: rating });
-    res.send(result);
-}); 
+  let rating = req.params.rating;
+  result = await ReviewService.getReviewsByRating(rating);
+  res.send(result);
+});
 
-router.post('/reviews/:text/:rating', function (req, res) {
-    let text = req.params.text;
-    let rating = req.params.rating;
-    let result = DemoReviews.create({ Text: text, Rating: rating }, function (err) {
-        if (err) res.send('Failure');
-      });
-    
-    res.send('Success');
-  });
+router.post('/reviews/:text/:rating', async function (req, res) {
+  let text = req.params.text;
+  let rating = req.params.rating;
+  let result = await ReviewService.addReview(text, rating);
+  res.send(result);
+});
 
 /**
  * Exporting the router allows us to access it from index.js where the server is started
