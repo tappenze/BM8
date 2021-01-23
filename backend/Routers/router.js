@@ -22,6 +22,7 @@ router.get('/reviews/:rating', async function (req, res) {
 });
 
 router.post('/reviews/:text/:rating', async function (req, res) {
+  console.log("posting dummy")
   let text = req.params.text;
   let rating = req.params.rating;
   let result = await ReviewService.addReview(text, rating);
