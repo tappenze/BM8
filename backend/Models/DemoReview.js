@@ -1,5 +1,12 @@
 
 
+
+/* DO NOT USE */
+
+
+
+
+
 const mongoose = require("mongoose");
 
 const DemoReviewSchema = new mongoose.Schema({
@@ -11,7 +18,7 @@ const DemoReviewSchema = new mongoose.Schema({
 //   PaymentCollected: {type: Boolean, required: true, default: false},
 
   Text: {type: String, required: true, default: ''},
-  Rating: {type: Number, required: true}
+  Rating: {type: Number, min: 1, max: 5, required: true}
 
 }, { timestamps: true });
 
