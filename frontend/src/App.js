@@ -1,25 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import { BrowserRouter } from "react-router-dom";
+import { Route } from "react-router-dom";
+import Map from "./components/pages/map";
+import Review from "./components/pages/review";
+import NavBar from "./components/navbar";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  constructor(props) {
+    super(props);
+  }
+
+  async componentDidMount() {}
+
+  render() {
+    return (
+      <div className="container-fluid">
+        <p>visible on all pages</p>
+        <BrowserRouter>
+          <Route path={["/", "/review", "/map"]} exact component={NavBar}/>
+          <Route path="/review" exact component={Review} />
+          <Route path="/map" exact component={Map} />
+        </BrowserRouter>
+      </div>
+    );
+  }
 }
 
 export default App;
