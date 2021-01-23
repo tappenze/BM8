@@ -89,7 +89,6 @@ export default class Map extends React.Component {
         {/* <script defer
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDZjoaudGI5dPggoVeXoeq5Hj9_vouZt0M&callback=initMap">
         </script> */}
-        <googleMap/>
         <div>
           <table className="table">
             <thead key="thead">
