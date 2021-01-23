@@ -4,11 +4,12 @@ const api = axios.create({
     baseURL: 'http://localhost:5000/'
 })
 
-export const makeReview = payload => api.post(`/reviews`, payload)
-export const getAllReviews = () => api.get(`/reviews`)
+export const addReview = payload => api.post(`/reviews/${payload.text}/${payload.rating}`)
+
+export const getAllReviews = () => api.get(`/reviews/all`)
 
 const links = {
-    makeReview,
+    addReview,
     getAllReviews,
 }
 
