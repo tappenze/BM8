@@ -21,10 +21,17 @@ router.get('/reviews/:rating', async function (req, res) {
   res.send(result);
 });
 
-router.post('/reviews/:text/:rating', async function (req, res) {
+router.get('/reviews/:placeId', async function (req, res) {
+  let placeId = req.params.placeId;
+  result = await ReviewService.getReviewsByPlaceId(placeId);
+  res.send(result);
+});
+
+router.post('/reviews/:placeId/:text/:rating', async function (req, res) {
+  let placeId = req.params.placeId;
   let text = req.params.text;
   let rating = req.params.rating;
-  let result = await ReviewService.addReview(text, rating);
+  let result = await ReviewService.addReview(placeId, text, rating);
   res.send(result);
 });
 

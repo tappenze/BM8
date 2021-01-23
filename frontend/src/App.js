@@ -1,29 +1,75 @@
-import React, { Component } from "react";
-import { BrowserRouter } from "react-router-dom";
-import { Route } from "react-router-dom";
-import Map from "./components/pages/map";
-import Review from "./components/pages/review";
-import NavBar from "./components/navbar";
+import React, { Component } from 'react';
+import { BrowserRouter } from 'react-router-dom';
+import { Route } from 'react-router-dom';
+import Map from './components/pages/map';
+import Review from './components/pages/review';
+import NavBar from './components/navbar';
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-  }
+import {
+  GoogleMap,
+  useLoadScript,
+  Marker,
+  InfoWindow,
+} from '@react-google-maps/api';
 
-  async componentDidMount() {}
+import mapStyles from './mapStyles'
 
-  render() {
-    return (
-      <div className="container-fluid">
-        <p>visible on all pages</p>
-        <BrowserRouter>
-          <Route path={["/", "/review", "/map"]} exact component={NavBar}/>
-          <Route path="/review" exact component={Review} />
-          <Route path="/map" exact component={Map} />
-        </BrowserRouter>
-      </div>
-    );
-  }
+const libraries = ['places'];
+const mapContainerStyle = {
+  width: '50vw',
+  height: '100vh',
+};
+const center = {
+  lat: 40.4259,
+  lng: -86.908,
+};
+const options = {
+  styles: mapStyles,
+  disableDefaultUI: true,
+  zoomControl: true
+};
+
+export default function App() {
+  const { isLoaded, loadError } = useLoadScript({
+    googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
+    libraries,
+  });
+
+  if (loadError) return 'Error Loading Maps';
+  if (!isLoaded) return 'Loading Maps';
+
+  return (
+    <div>
+      <GoogleMap
+        mapContainerStyle={mapContainerStyle}
+        zoom={15}
+        center={center}
+        options={options}
+        onClick={(event) => console.log(event.placeId)}
+      ></GoogleMap>
+    </div>
+  );
 }
 
-export default App;
+// class App extends Component {
+//   constructor(props) {
+//     super(props);
+//   }
+
+//   async componentDidMount() {}
+
+//   render() {
+//     return (
+//       <div className='container-fluid'>
+//         <p>visible on all pages</p>
+//         <BrowserRouter>
+//           <Route path={['/', '/review', '/map']} exact component={NavBar} />
+//           <Route path='/review' exact component={Review} />
+//           <Route path='/map' exact component={Map} />
+//         </BrowserRouter>
+//       </div>
+//     );
+//   }
+// }
+
+// export default App;

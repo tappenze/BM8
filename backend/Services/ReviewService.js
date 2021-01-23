@@ -5,10 +5,11 @@ const reviewsDB = mongoose.connection.useDb("Reviews");
 const ReviewSchema = require("../Models/Review");
 const Reviews = reviewsDB.model("Review", ReviewSchema);
 
-exports.addReview = async function (text, rating) {
+exports.addReview = async function (placeId, text, rating) {
   try {
     let result = await Reviews.create(
       {
+        PlaceId: placeId,
         Text: text,
         Rating: rating,
       },
@@ -24,6 +25,11 @@ exports.addReview = async function (text, rating) {
 
 exports.getAllReviews = async function () {
   result = await Reviews.find({  });
+  return result;
+}
+
+exports.getReviewsByPlaceId = async function (placeId) {
+  result = await Reviews.find({ PlaceId: placeId });
   return result;
 }
 
