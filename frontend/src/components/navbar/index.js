@@ -13,6 +13,8 @@ function Navigation() {
     <Nav className="mr-auto">
       <Nav.Link href="/review">Review</Nav.Link>
       <Nav.Link href="/map">Map</Nav.Link>
+      <Nav.Link href="/info">Info</Nav.Link>
+
     </Nav>
   </Navbar>
     );
