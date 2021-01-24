@@ -1,6 +1,7 @@
 import React from "react";
 import { Container, Form } from "react-bootstrap";
 import Googlemap from '../googleMap';
+import GMap from '../GMap';
 import ReactTable from "react-table";
 import links from "../../f2bLinks/";
 import "./style.css";
@@ -89,7 +90,6 @@ export default class Map extends React.Component {
         {/* <script defer
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDZjoaudGI5dPggoVeXoeq5Hj9_vouZt0M&callback=initMap">
         </script> */}
-        <googleMap/>
         <div>
           <table className="table">
             <thead key="thead">

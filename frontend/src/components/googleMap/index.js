@@ -111,6 +111,7 @@ export class MapContainer extends Component {
             lat: this.state.mapCenter.lat,
             lng: this.state.mapCenter.lng,
           }}
+          onClick={(event) => console.log(event)}
         >
           <Marker
             position={{
