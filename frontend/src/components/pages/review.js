@@ -109,8 +109,9 @@ export class Review extends Component {
       <div id="overall">
         <div class="container-review">
           <Form onSubmit={this.handleSubmit}>
-            
-
+            <Container id="container">
+              <Row className="text-center">
+                <Col>
                   <br></br>
                   <div id="login-box">
                     <h3>Location</h3>
@@ -243,6 +244,9 @@ export class Review extends Component {
                       value="Enter"
                     />
                   </div>
+                </Col>
+              </Row>
+            </Container>
 
             {/* <div className="form-group">
               <label>UserName:</label>
