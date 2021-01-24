@@ -1,6 +1,7 @@
 import React from "react";
 import { Container, Form } from "react-bootstrap";
 import Googlemap from '../googleMap';
+import GMap from '../GMap';
 import ReactTable from "react-table";
 import links from "../../f2bLinks/";
 import "./style.css";

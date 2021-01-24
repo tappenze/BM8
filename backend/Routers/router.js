@@ -14,11 +14,12 @@ router.get("/reviews/all", async function (req, res) {
   res.send(result);
 });
 
-router.get("/reviews/:rating", async function (req, res) {
-  let rating = req.params.rating;
-  result = await ReviewService.getReviewsByRating(rating);
-  res.send(result);
-});
+
+// router.get('/reviews/:rating', async function (req, res) {
+//   let rating = req.params.rating;
+//   result = await ReviewService.getReviewsByRating(rating);
+//   res.send(result);
+// });
 
 router.get("/reviews/:placeId", async function (req, res) {
   let placeId = req.params.placeId;
