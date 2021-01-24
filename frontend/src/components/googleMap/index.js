@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Map, InfoWindow, Marker, GoogleApiWrapper } from "google-maps-react";
 import PlacesAutocomplete from "react-places-autocomplete";
+import { RiSurgicalMaskLine, RiHandSanitizerLine, RiPinDistanceLine } from "react-icons/ri";
 import links from "../../f2bLinks";
 import {
   geocodeByAddress,
@@ -70,6 +71,12 @@ export class MapContainer extends Component {
   };
 
   render() {
+    const containerStyle = {
+      position: 'relative',  
+      width: '50%',
+      height: '50%'
+    }
+    const {google} = this.props;
     return (
       <div id="googleMap">
         <PlacesAutocomplete
@@ -116,6 +123,7 @@ export class MapContainer extends Component {
           )}
         </PlacesAutocomplete>
         <Map
+        // containerStyle={containerStyle}
           google={this.props.google}
           // onClick={this.onMapClicked}
           initialCenter={{
@@ -139,6 +147,11 @@ export class MapContainer extends Component {
               </div>}
               onClick={this.onMarkerClick}
               position={{ lat: c.Lat, lng: c.Lng }}
+              // icon={{ 
+              //   url: './medical.png',
+              //   anchor: new google.maps.Point(32,32),
+              //   scaledSize: new google.maps.Size(64,64)
+              // }}
             >
             </Marker>
           ))}

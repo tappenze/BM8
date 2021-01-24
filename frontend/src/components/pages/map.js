@@ -85,31 +85,12 @@ export default class Map extends React.Component {
 
     return (
       <div>
-        <p>should be showing table</p>
         
         {/* <script defer
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDZjoaudGI5dPggoVeXoeq5Hj9_vouZt0M&callback=initMap">
         </script> */}
-        <div>
-          <table className="table">
-            <thead key="thead">
-              <tr>
-                <th>ID</th>
-                <th>Rating</th>
-                <th>Text</th>
-              </tr>
-            </thead>
-            <tbody>
-              {this.state.reviews.map((c) => (
-                <tr key={c._id}>
-                  <td>{c._id} </td>
-                  <td>{c.Rating}</td>
-                  <td>{c.Text}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+  
+        {/* <Googlemap/> */}
         <GMap/>
       </div>
     );

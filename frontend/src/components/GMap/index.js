@@ -43,6 +43,7 @@ const options = {
   zoomControl: true,
 };
 
+
 export default function GMap() {
   const [reviews, setReviews] = useState([]);
   const [selected, setSelected] = useState({});
@@ -60,7 +61,7 @@ export default function GMap() {
   });
 
   const { isLoaded, loadError } = useLoadScript({
-    googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
+    googleMapsApiKey:'AIzaSyAZ4x7nCYHDcM_lcwZEe5KaoMP9DAwbXPU',
     libraries,
   });
 
@@ -77,6 +78,8 @@ export default function GMap() {
 
   if (loadError) return "Error Loading Maps";
   if (!isLoaded) return "Loading Maps";
+
+  
 
   return (
     <div>
