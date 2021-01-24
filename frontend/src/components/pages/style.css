@@ -18,6 +18,10 @@
     background: #f2f2f2;
 }
 
+.login-box {
+    width: 100%;
+}
+
 .q4 {
-    display: inline;
+    width: 100%
 }

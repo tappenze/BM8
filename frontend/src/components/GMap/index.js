@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react";
 
 import links from "../../f2bLinks/";
-
+import icon from './thumbnail_mask.svg';
 import {
   GoogleMap,
   useLoadScript,
   Marker,
   InfoWindow,
 } from "@react-google-maps/api";
+
+
 
 import usePlacesAutoComplete, {
   getGeocode,
@@ -42,13 +44,12 @@ const options = {
 };
 
 export default function GMap() {
-
   const [reviews, setReviews] = useState([]);
-  const [ selected, setSelected ] = useState({});
-  
-  const onSelect = item => {
+  const [selected, setSelected] = useState({});
+
+  const onSelect = (item) => {
     setSelected(item);
-  }
+  };
 
   useEffect(() => {
     async function loadReviews() {
@@ -94,25 +95,35 @@ export default function GMap() {
       >
         {reviews.map((item) => {
           // console.log(item)
-          return <Marker key={item._id} position={{lat: item.Lat, lng: item.Lng}} onClick={() => onSelect(item)} />;
+          return (
+            <Marker
+              key={item._id}
+              position={{ lat: item.Lat, lng: item.Lng }}
+              icon={{
+                url: icon,
+                scaledSize: new window.google.maps.Size(30,30),   
+                origin: new window.google.maps.Point(0,0),
+                anchor: new window.google.maps.Point(15, 15)             
+              }}
+              onClick={() => onSelect(item)}
+            />
+          );
         })}
-        {selected.Lat && selected.Lng && 
-            (
-              <InfoWindow
-              position={{lat: selected.Lat, lng: selected.Lng}}
-              clickable={true}
-              onCloseClick={() => setSelected({})}
-            >
-              <div>
-                <p>{selected.Address} </p>
-                <p>Mask Rating: {selected.Rating} </p>
-                <p>Overall Sanitation: {selected.Sanitation} </p>
-                <p>Social Distancing: {selected.Social} </p>
-                <p>Additional Comments: {selected.Text}</p>
-              </div>
-            </InfoWindow>
-            )
-         }
+        {selected.Lat && selected.Lng && (
+          <InfoWindow
+            position={{ lat: selected.Lat, lng: selected.Lng }}
+            clickable={true}
+            onCloseClick={() => setSelected({})}
+          >
+            <div>
+              <p>{selected.Address} </p>
+              <p>Mask Rating: {selected.Rating} </p>
+              <p>Overall Sanitation: {selected.Sanitation} </p>
+              <p>Social Distancing: {selected.Social} </p>
+              <p>Additional Comments: {selected.Text}</p>
+            </div>
+          </InfoWindow>
+        )}
       </GoogleMap>
     </div>
   );

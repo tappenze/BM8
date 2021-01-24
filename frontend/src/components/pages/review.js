@@ -1,7 +1,11 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import { Container, Form, Col, Row } from "react-bootstrap";
-import { RiSurgicalMaskLine, RiHandSanitizerLine, RiPinDistanceLine } from "react-icons/ri";
+import {
+  RiSurgicalMaskLine,
+  RiHandSanitizerLine,
+  RiPinDistanceLine,
+} from "react-icons/ri";
 import { TextField, Typography, Slider, makeStyles } from "@material-ui/core";
 import { Map, InfoWindow, Marker, GoogleApiWrapper } from "google-maps-react";
 import PlacesAutocomplete from "react-places-autocomplete";
@@ -34,8 +38,7 @@ export class Review extends Component {
       mapCenter: {
         lat: 40.424,
         lng: -86.929,
-      }
-      
+      },
     };
     this.handleTextChange = this.handleTextChange.bind(this);
     this.handleSocialChange = this.handleSocialChange.bind(this);
@@ -49,22 +52,31 @@ export class Review extends Component {
 
   async handleSubmit(event) {
     event.preventDefault();
-    console.log("the current state is")
-    console.log(this.state)
+    console.log("the current state is");
+    console.log(this.state);
     await links
-      .addReview({ address: this.state.address, text: this.state.text, rating: this.state.rating, social: this.state.social, sanitation: this.state.sanitation, lat: this.state.mapCenter.lat, lng: this.state.mapCenter.lng })
+      .addReview({
+        address: this.state.address,
+        text: this.state.text,
+        rating: this.state.rating,
+        social: this.state.social,
+        sanitation: this.state.sanitation,
+        lat: this.state.mapCenter.lat,
+        lng: this.state.mapCenter.lng,
+      })
       .then(() => {
         console.log("added to database");
       });
   }
 
   handleTextChange(event) {
-    this.setState({ text: event.target.value });
-  }
+    let line = event.target.value.replace(/\n|\r/g, "");
+    this.setState({ text: line });
+    
+  };
 
   handleRatingChange(event, value) {
     this.setState({ rating: value });
-
   }
 
   handleSocialChange(event, value) {
@@ -77,8 +89,8 @@ export class Review extends Component {
 
   handleAddressChange = (address) => {
     this.setState({ address });
-    console.log("Changed address to")
-    console.log(address)
+    console.log("Changed address to");
+    console.log(address);
   };
 
   handleSelect = (address) => {
@@ -97,57 +109,62 @@ export class Review extends Component {
       <div id="overall">
         <div class="container-review">
           <Form onSubmit={this.handleSubmit}>
-            <Container id="container">
-              <Row className="text-center">
-                <Col>
+            
+
                   <br></br>
                   <div id="login-box">
                     <h3>Location</h3>
                     <div id="locationSearch">
-        <PlacesAutocomplete
-          value={this.state.address}
-          onChange={this.handleAddressChange}
-          onSelect={this.handleSelect}
-        >
-          {({
-            getInputProps,
-            suggestions,
-            getSuggestionItemProps,
-            loading,
-          }) => (
-            <div>
-              <input
-                {...getInputProps({
-                  placeholder: "Search Places ...",
-                  className: "location-search-input",
-                })}
-              />
-              <div className="autocomplete-dropdown-container">
-                {loading && <div>Loading...</div>}
-                {suggestions.map((suggestion) => {
-                  const className = suggestion.active
-                    ? "suggestion-item--active"
-                    : "suggestion-item";
-                  // inline style for demonstration purpose
-                  const style = suggestion.active
-                    ? { backgroundColor: "#fafafa", cursor: "pointer" }
-                    : { backgroundColor: "#ffffff", cursor: "pointer" };
-                  return (
-                    <div
-                      {...getSuggestionItemProps(suggestion, {
-                        className,
-                        style,
-                      })}
-                    >
-                      <span>{suggestion.description}</span>
+                      <PlacesAutocomplete
+                        value={this.state.address}
+                        onChange={this.handleAddressChange}
+                        onSelect={this.handleSelect}
+                      >
+                        {({
+                          getInputProps,
+                          suggestions,
+                          getSuggestionItemProps,
+                          loading,
+                        }) => (
+                          <div>
+                            <input
+                              {...getInputProps({
+                                placeholder: "Search Places ...",
+                                className: "location-search-input",
+                              })}
+                            />
+                            <div className="autocomplete-dropdown-container">
+                              {loading && <div>Loading...</div>}
+                              {suggestions.map((suggestion) => {
+                                const className = suggestion.active
+                                  ? "suggestion-item--active"
+                                  : "suggestion-item";
+                                // inline style for demonstration purpose
+                                const style = suggestion.active
+                                  ? {
+                                      backgroundColor: "#fafafa",
+                                      cursor: "pointer",
+                                    }
+                                  : {
+                                      backgroundColor: "#ffffff",
+                                      cursor: "pointer",
+                                    };
+                                return (
+                                  <div
+                                    {...getSuggestionItemProps(suggestion, {
+                                      className,
+                                      style,
+                                    })}
+                                  >
+                                    <span>{suggestion.description}</span>
+                                  </div>
+                                );
+                              })}
+                            </div>
+                          </div>
+                        )}
+                      </PlacesAutocomplete>
                     </div>
-                  );
-                })}
-              </div>
-            </div>
-          )}
-        </PlacesAutocomplete>
-      </div>
                     <span id="q4">
                       <Typography id="discrete-slider" gutterBottom>
                         Mask Rating
@@ -167,6 +184,7 @@ export class Review extends Component {
                       value={this.state.rating}
                       onChange={this.handleRatingChange}
                     />
+
                     <span id="q4">
                       <Typography id="discrete-slider" gutterBottom>
                         Social Distanced Rating
@@ -209,13 +227,14 @@ export class Review extends Component {
                     <TextField
                       id="outlined-multiline-static"
                       label="Comments"
-                      multiline
+                      multiline={true}
                       rows={4}
+                      fullWidth={true}
                       variant="outlined"
                       value={this.state.text}
                       onChange={this.handleTextChange}
                     />
-                    
+
                     <br></br>
                     <input
                       id="entry-button"
@@ -224,9 +243,6 @@ export class Review extends Component {
                       value="Enter"
                     />
                   </div>
-                </Col>
-              </Row>
-            </Container>
 
             {/* <div className="form-group">
               <label>UserName:</label>

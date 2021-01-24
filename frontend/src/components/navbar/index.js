@@ -5,7 +5,7 @@ import "./style.css";
 function Navigation() {
     return (
       <Navbar bg="light" variant="light">
-      <Navbar.Brand href="/">CmAP</Navbar.Brand>
+      <Navbar.Brand>CmAP</Navbar.Brand>
       <Nav className="mr-auto">
         <Nav.Link href="/review">Review</Nav.Link>
         <Nav.Link href="/map">Map</Nav.Link>
