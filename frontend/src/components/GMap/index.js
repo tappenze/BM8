@@ -108,6 +108,7 @@ export default function GMap() {
                 <p>Mask Rating: {selected.Rating} </p>
                 <p>Overall Sanitation: {selected.Sanitation} </p>
                 <p>Social Distancing: {selected.Social} </p>
+                <p>Additional Comments: {selected.Text}</p>
               </div>
             </InfoWindow>
             )
