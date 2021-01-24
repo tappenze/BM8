@@ -41,6 +41,7 @@ const options = {
   zoomControl: true,
 };
 
+
 export default function GMap() {
 
   const [reviews, setReviews] = useState([]);
@@ -59,7 +60,7 @@ export default function GMap() {
   });
 
   const { isLoaded, loadError } = useLoadScript({
-    googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
+    googleMapsApiKey:'AIzaSyAZ4x7nCYHDcM_lcwZEe5KaoMP9DAwbXPU',
     libraries,
   });
 
@@ -76,6 +77,8 @@ export default function GMap() {
 
   if (loadError) return "Error Loading Maps";
   if (!isLoaded) return "Loading Maps";
+
+  
 
   return (
     <div>
@@ -94,7 +97,13 @@ export default function GMap() {
       >
         {reviews.map((item) => {
           // console.log(item)
-          return <Marker key={item._id} position={{lat: item.Lat, lng: item.Lng}} onClick={() => onSelect(item)} />;
+          return <Marker key={item._id} position={{lat: item.Lat, lng: item.Lng}} onClick={() => onSelect(item)} 
+          // icon={{ 
+          //       url: './mask.png',
+          //       anchor: new google.maps.Point(32,32),
+          //       scaledSize: new google.maps.Size(64,64)
+          //     }}
+          />;
         })}
         {selected.Lat && selected.Lng && 
             (
@@ -105,9 +114,9 @@ export default function GMap() {
             >
               <div>
                 <p>{selected.Address} </p>
-                <p>Mask Rating: {selected.Rating} </p>
-                <p>Overall Sanitation: {selected.Sanitation} </p>
-                <p>Social Distancing: {selected.Social} </p>
+                <p>Mask Rating: {selected.Rating} / 5</p>
+                <p>Overall Sanitation: {selected.Sanitation} / 5</p>
+                <p>Social Distancing: {selected.Social} / 5</p>
                 <p>Additional Comments: {selected.Text}</p>
               </div>
             </InfoWindow>
