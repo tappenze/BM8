@@ -1,21 +1,21 @@
 import React from 'react';
+import { Button, Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
 import "./style.css";
 
-function NavBar() {
+function Navigation() {
     return (
-        <nav  className="navbar navbar-expand-lg navbar-light bg-light">
-          <a  className="navbar-brand"  href="#">CmAP</a>
-          <button  className="navbar-toggler"  type="button"  data-toggle="collapse"  data-target="#navbarNavAltMarkup"  aria-controls="navbarNavAltMarkup"  aria-expanded="false"  aria-label="Toggle navigation">
-          <span  className="navbar-toggler-icon"></span>
-      </button>
-      <div  className="collapse navbar-collapse"  id="navbarNavAltMarkup">
-          <div  className="navbar-nav">
-              <a  className="nav-item nav-link"  href="/review">Review</a>
-              <a  className="nav-item nav-link"  href="/map">Map</a>
-          </div>
-      </div>
-      </nav>
+      <Navbar bg="light" variant="light">
+      <Navbar.Brand href="/">CmAP</Navbar.Brand>
+      <Nav className="mr-auto">
+        <Nav.Link href="/review">Review</Nav.Link>
+        <Nav.Link href="/map">Map</Nav.Link>
+      </Nav>
+      {/* <Form inline>
+        <FormControl type="text" placeholder="Search" className="mr-sm-2" />
+        <Button variant="outline-primary">Search</Button>
+      </Form> */}
+    </Navbar>
     );
 }
 
-export default NavBar
+export default Navigation
