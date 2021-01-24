@@ -141,9 +141,12 @@ export class MapContainer extends Component {
               title={c.Address}
               name={<div>
                 <p>{c.Text}</p>
-                <p>Social Distancing Score: {c.Social}</p>
-                <p>Mask Rating: {c.Rating}</p>
-              <p>Sanitation: {c.Sanitation}</p>
+                <br></br>
+                <p>Social Distancing Score: <b>{c.Social}</b> / 5</p>
+                <br></br>
+                <p>Mask Rating: <b>{c.Rating}</b> / 5</p>
+                <br></br>
+              <p>Sanitation: <b>{c.Sanitation}</b> / 5</p>
               </div>}
               onClick={this.onMarkerClick}
               position={{ lat: c.Lat, lng: c.Lng }}

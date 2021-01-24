@@ -81,6 +81,9 @@ export default class Info extends Component {
         <p>Sore Throat</p>
         <p>Nausea</p>
         <p>Diarrhea</p>
+
+        <br></br>
+        <h1><span role="img" aria-label="Prohibited">🚫 </span> <span role="img" aria-label="Billed Cap">🧢</span></h1>
       </div>
     );
   }
