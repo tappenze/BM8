@@ -116,11 +116,15 @@ export default function GMap() {
             onCloseClick={() => setSelected({})}
           >
             <div>
-              <p>{selected.Address} </p>
-              <p>Mask Rating: {selected.Rating} </p>
-              <p>Overall Sanitation: {selected.Sanitation} </p>
-              <p>Social Distancing: {selected.Social} </p>
-              <p>Additional Comments: {selected.Text}</p>
+              <h6>{selected.Address}</h6>
+                <br></br>
+                <p>Mask Score: <b>{selected.Rating} / 5</b></p>
+                <br></br>
+                <p>Social Distancing: <b>{selected.Social} / 5</b></p>
+                <br></br>
+                <p>Sanitation: <b>{selected.Sanitation} / 5</b></p>
+                <br></br>
+                <p>Additional Comments: <b>{selected.Text} </b></p>
             </div>
           </InfoWindow>
         )}
@@ -162,7 +166,7 @@ function Search({ panTo }) {
           value={value}
           onChange={(event) => setValue(event.target.value)}
           disabled={!ready}
-          placeholder="Search for a location"
+          placeholder="Search places ..."
         ></ComboboxInput>
         <ComboboxPopover>
           {status === "OK" &&
