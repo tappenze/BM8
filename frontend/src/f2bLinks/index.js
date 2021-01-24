@@ -21,7 +21,6 @@ export const getAllReviews = () => api.get(`/reviews/all`)
 const links = {
     addReview,
     getAllReviews,
-    getReviewsByPlaceId,
 }
 
 export default links

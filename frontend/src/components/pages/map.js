@@ -110,7 +110,7 @@ export default class Map extends React.Component {
             </tbody>
           </table>
         </div>
-        <Googlemap/>
+        <GMap/>
       </div>
     );
   }
